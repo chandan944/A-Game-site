@@ -36,7 +36,7 @@ const IconList = ({platforms}:Props) => {
   }
   return (
    <>
-   {platforms.map((platform)=> (<Icon key={platform.id} as={iconMap[platform.slug]} margin={"5px"} boxSize={"20px"} color={"blue.300"}/>))}
+   {platforms.map((platform)=> (<Icon key={platform.id} as={iconMap[platform.slug]} marginX={"5px"} boxSize={"20px"} color={"blue.300"}/>))}
    </>
   )
 }

@@ -3,6 +3,8 @@ import { Game } from "../hook/useGame";
 import IconList from "./IconList";
 import Circite from "./Circite";
 import getIma from "../hook/image-url";
+import Emoji from "./Emoji";
+
 
 export interface Props {
   game: Game;
@@ -14,16 +16,17 @@ const GameCard = ({ game }: Props) => {
     <Card >
       <Image src={getIma(game.background_image)} />
       <CardBody>
-        <Heading fontSize={"20"}>{game.name}</Heading>
-        <HStack justifyContent={"space-between"}>
+      <HStack justifyContent={"space-between"} marginBottom={"5px"}>
           <div>
             
-            <IconList
+            <IconList 
               platforms={game.parent_platforms.map((p) => p.platform)}
             />
           </div>
           <Circite score={game.metacritic} />
         </HStack>
+        <Heading fontSize={"20"}>{game.name}</Heading>
+        <Emoji rating={game.rating_top}/>
       </CardBody>
     </Card>
   );
