@@ -1,6 +1,7 @@
 
+import { GameQuery } from "../App";
 import useData from "./useData";
-import { Genre } from "./useGenre";
+
 
 export interface Platform {
     id: number;
@@ -18,11 +19,22 @@ export interface Game {
 
 }
 
-const useGame = (selectGenre: Genre | null) =>
+
+const useGame = (
+    gameQuery: GameQuery
+) =>
     useData<Game>(
         '/games',
-        { params: selectGenre ? { genres: selectGenre.id } : {} },  // Use the correct parameter 'genres'
-        [selectGenre?.id] // Re-fetch data when the selected genre changes
+        { 
+            params: { 
+                genres: gameQuery.genre?.id, 
+                platforms: gameQuery.platform?.id ,
+                ordering: gameQuery.sortOrder ,// Change this to "ordering"
+                search:gameQuery.TextInput
+            } 
+        },
+        [gameQuery]
     );
+
 
 export default useGame;
